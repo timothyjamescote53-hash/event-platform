@@ -247,3 +247,4 @@ services:
 # zookeeper
 # kafka
 # redis
+# clickhouse
