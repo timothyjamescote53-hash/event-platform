@@ -261,3 +261,4 @@ services:
 # jaeger otlp
 # init
 # zookeeper
+# kafka
