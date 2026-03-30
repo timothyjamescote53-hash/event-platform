@@ -246,3 +246,4 @@ services:
 # init
 # zookeeper
 # kafka
+# redis
