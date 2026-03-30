@@ -248,3 +248,4 @@ services:
 # kafka
 # redis
 # clickhouse
+# kafka-ui
