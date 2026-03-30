@@ -129,3 +129,4 @@ message RecentEventsResponse {
 // alert
 // metric
 // query
+// init
