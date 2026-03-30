@@ -130,3 +130,4 @@ message RecentEventsResponse {
 // metric
 // query
 // init
+// batch
