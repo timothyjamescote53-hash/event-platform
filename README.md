@@ -590,3 +590,4 @@ MIT — Copyright (c) 2025
 <!-- architecture diagram -->
 <!-- init -->
 <!-- overview -->
+<!-- arch -->
