@@ -260,3 +260,4 @@ services:
 # grafana env
 # jaeger otlp
 # init
+# zookeeper
