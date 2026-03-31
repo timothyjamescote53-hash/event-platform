@@ -132,3 +132,4 @@ message RecentEventsResponse {
 // init
 // batch
 // alert
+// metric
