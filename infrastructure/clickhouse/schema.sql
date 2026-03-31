@@ -109,3 +109,4 @@ GROUP BY tenant_id, hour;
 -- revenue
 -- db
 -- index
+-- ttl
