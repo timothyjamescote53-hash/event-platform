@@ -107,3 +107,4 @@ GROUP BY tenant_id, hour;
 -- ttl
 -- mat view
 -- revenue
+-- db
