@@ -110,3 +110,4 @@ GROUP BY tenant_id, hour;
 -- db
 -- index
 -- ttl
+-- mat view
