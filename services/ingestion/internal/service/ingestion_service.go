@@ -255,3 +255,4 @@ func newUUID() string {
 // uuid
 // timestamp
 // version
+// dedup check
