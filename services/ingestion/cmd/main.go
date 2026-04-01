@@ -107,3 +107,4 @@ func getEnv(key, fallback string) string {
 // batch flush ctx
 // flush on shutdown
 // scaffold
+// server
