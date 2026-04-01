@@ -251,3 +251,4 @@ func newUUID() string {
 // event
 // errors
 // interfaces
+// validate
