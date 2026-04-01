@@ -243,3 +243,4 @@ func newUUID() string {
 // flusher
 // tenant group
 // batch method
+// shutdown flush
