@@ -260,3 +260,4 @@ func newUUID() string {
 // flush trigger
 // flusher
 // tenant group
+// batch method
