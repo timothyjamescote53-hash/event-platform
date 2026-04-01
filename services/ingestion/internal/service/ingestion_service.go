@@ -231,3 +231,4 @@ func newUUID() string {
 // newuuid v2
 // config struct
 // event
+// errors
