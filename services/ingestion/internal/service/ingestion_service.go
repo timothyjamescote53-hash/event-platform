@@ -252,3 +252,4 @@ func newUUID() string {
 // errors
 // interfaces
 // validate
+// uuid
