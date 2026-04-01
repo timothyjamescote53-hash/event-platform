@@ -232,3 +232,4 @@ func newUUID() string {
 // config struct
 // event
 // errors
+// interfaces
