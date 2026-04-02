@@ -168,3 +168,4 @@ func writeJSON(w http.ResponseWriter, status int, v any) {
 // tenant header
 // error responses
 // batch handler
+// schema handler
