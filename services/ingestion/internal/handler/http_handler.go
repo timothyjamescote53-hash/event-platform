@@ -157,3 +157,4 @@ func writeJSON(w http.ResponseWriter, status int, v any) {
 // ingest single
 // tenant header
 // error responses
+// batch handler
