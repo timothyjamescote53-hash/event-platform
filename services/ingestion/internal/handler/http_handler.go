@@ -166,3 +166,4 @@ func writeJSON(w http.ResponseWriter, status int, v any) {
 // writeJSON
 // ingest single
 // tenant header
+// error responses
