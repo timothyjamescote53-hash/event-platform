@@ -87,3 +87,4 @@ func (m *MemoryDeduplicator) runExpiry() {
 // producer
 // thread safe
 // deduper
+// expiry goroutine
