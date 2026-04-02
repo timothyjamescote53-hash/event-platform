@@ -91,3 +91,4 @@ func (m *MemoryDeduplicator) runExpiry() {
 // interface check
 // dedup interface
 // producer
+// thread safe
