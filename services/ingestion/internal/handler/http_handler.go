@@ -161,3 +161,4 @@ func writeJSON(w http.ResponseWriter, status int, v any) {
 // schema handler
 // health
 // metrics
+// uptime
