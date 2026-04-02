@@ -170,3 +170,4 @@ func writeJSON(w http.ResponseWriter, status int, v any) {
 // batch handler
 // schema handler
 // health
+// metrics
