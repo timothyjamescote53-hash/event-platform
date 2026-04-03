@@ -230,3 +230,17 @@ func newUUID() string {
 // log error
 // newuuid v2
 // config struct
+// event
+// errors
+// interfaces
+// validate
+// uuid
+// timestamp
+// version
+// dedup check
+// buffer
+// flush trigger
+// flusher
+// tenant group
+// batch method
+// shutdown flush

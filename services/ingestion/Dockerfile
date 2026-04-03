@@ -20,3 +20,5 @@ ENTRYPOINT ["/ingestion-service"]
 # builder
 # scratch
 # go sum removed
+# builder
+# scratch
