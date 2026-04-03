@@ -217,3 +217,4 @@ func TestIngestEvent_NilPayload(t *testing.T) {
 // version
 // no tenant
 // no type
+// dedup
