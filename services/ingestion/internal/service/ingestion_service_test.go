@@ -215,3 +215,4 @@ func TestIngestEvent_NilPayload(t *testing.T) {
 // id assign
 // timestamp
 // version
+// no tenant
