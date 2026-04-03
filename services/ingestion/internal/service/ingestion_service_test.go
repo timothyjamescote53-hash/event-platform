@@ -219,3 +219,4 @@ func TestIngestEvent_NilPayload(t *testing.T) {
 // no type
 // dedup
 // batch valid
+// batch mixed
