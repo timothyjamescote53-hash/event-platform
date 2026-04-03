@@ -203,3 +203,4 @@ func TestIngestEvent_NilPayload(t *testing.T) {
 // valid test
 // id assign
 // timestamp
+// version
