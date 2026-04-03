@@ -211,3 +211,14 @@ func TestIngestEvent_NilPayload(t *testing.T) {
 // batch mixed
 // flush
 // nil payload
+// valid test
+// id assign
+// timestamp
+// version
+// no tenant
+// no type
+// dedup
+// batch valid
+// batch mixed
+// flush
+// nil payload
