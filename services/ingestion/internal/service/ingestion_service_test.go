@@ -216,3 +216,4 @@ func TestIngestEvent_NilPayload(t *testing.T) {
 // timestamp
 // version
 // no tenant
+// no type
