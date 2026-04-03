@@ -212,3 +212,4 @@ func TestIngestEvent_NilPayload(t *testing.T) {
 // flush
 // nil payload
 // valid test
+// id assign
