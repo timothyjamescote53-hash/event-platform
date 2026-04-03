@@ -211,3 +211,4 @@ func TestIngestEvent_NilPayload(t *testing.T) {
 // batch mixed
 // flush
 // nil payload
+// valid test
