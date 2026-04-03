@@ -202,3 +202,4 @@ func TestIngestEvent_NilPayload(t *testing.T) {
 // nil payload
 // valid test
 // id assign
+// timestamp
