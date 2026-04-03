@@ -218,3 +218,4 @@ func TestIngestEvent_NilPayload(t *testing.T) {
 // no tenant
 // no type
 // dedup
+// batch valid
