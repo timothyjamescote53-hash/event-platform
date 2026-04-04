@@ -378,3 +378,4 @@ func getEnv(key, fallback string) string {
 // signal handling
 // event domain
 // window struct
+// add method
