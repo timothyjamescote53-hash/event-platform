@@ -377,3 +377,4 @@ func getEnv(key, fallback string) string {
 // getenv
 // signal handling
 // event domain
+// window struct
