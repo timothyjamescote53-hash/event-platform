@@ -383,3 +383,4 @@ func getEnv(key, fallback string) string {
 // p99 sort
 // p99 index
 // anomaly struct
+// zscore mean
