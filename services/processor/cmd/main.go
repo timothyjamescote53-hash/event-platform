@@ -418,3 +418,4 @@ func getEnv(key, fallback string) string {
 // zscore stddev
 // 3 sigma
 // history slide
+// zero stddev
