@@ -421,3 +421,4 @@ func getEnv(key, fallback string) string {
 // zero stddev
 // window mgr
 // 1m window
+// 5m window
