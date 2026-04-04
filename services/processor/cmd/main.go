@@ -410,3 +410,4 @@ func getEnv(key, fallback string) string {
 // event domain
 // window struct
 // add method
+// avg method
