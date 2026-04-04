@@ -413,3 +413,4 @@ func getEnv(key, fallback string) string {
 // avg method
 // p99 sort
 // p99 index
+// anomaly struct
