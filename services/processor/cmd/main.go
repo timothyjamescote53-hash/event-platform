@@ -389,3 +389,4 @@ func getEnv(key, fallback string) string {
 // history slide
 // zero stddev
 // window mgr
+// 1m window
