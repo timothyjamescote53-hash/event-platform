@@ -388,3 +388,4 @@ func getEnv(key, fallback string) string {
 // 3 sigma
 // history slide
 // zero stddev
+// window mgr
