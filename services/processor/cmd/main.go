@@ -430,3 +430,4 @@ func getEnv(key, fallback string) string {
 // emit alert
 // non-blocking
 // processor struct
+// process method
