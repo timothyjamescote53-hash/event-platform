@@ -214,3 +214,4 @@ var _ = math.Sqrt
 // zero stddev
 // varied history
 // count test
+// avg test
