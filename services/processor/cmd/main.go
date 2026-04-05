@@ -428,3 +428,4 @@ func getEnv(key, fallback string) string {
 // expiry
 // alert signal
 // emit alert
+// non-blocking
