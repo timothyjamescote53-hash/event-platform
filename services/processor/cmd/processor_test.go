@@ -216,3 +216,4 @@ var _ = math.Sqrt
 // count test
 // avg test
 // avg empty
+// p99 test
