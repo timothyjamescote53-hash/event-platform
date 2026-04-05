@@ -211,3 +211,4 @@ var _ = math.Sqrt
 // spike
 // drop
 // isolation
+// zero stddev
