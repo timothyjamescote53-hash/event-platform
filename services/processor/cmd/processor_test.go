@@ -210,3 +210,4 @@ var _ = math.Sqrt
 // normal traffic
 // spike
 // drop
+// isolation
