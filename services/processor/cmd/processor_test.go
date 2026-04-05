@@ -218,3 +218,4 @@ var _ = math.Sqrt
 // avg empty
 // p99 test
 // p99 empty
+// concurrent
