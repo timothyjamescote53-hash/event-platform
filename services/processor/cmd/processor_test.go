@@ -206,3 +206,4 @@ var _ = math.Sqrt
 // p99 test
 // p99 empty
 // concurrent
+// no history
