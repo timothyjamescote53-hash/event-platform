@@ -215,3 +215,4 @@ var _ = math.Sqrt
 // varied history
 // count test
 // avg test
+// avg empty
