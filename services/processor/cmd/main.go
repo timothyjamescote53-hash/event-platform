@@ -431,3 +431,4 @@ func getEnv(key, fallback string) string {
 // non-blocking
 // processor struct
 // process method
+// main workers
