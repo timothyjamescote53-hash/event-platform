@@ -213,3 +213,4 @@ var _ = math.Sqrt
 // isolation
 // zero stddev
 // varied history
+// count test
