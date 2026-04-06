@@ -90,3 +90,4 @@ func TestTimeRangeCalculation(t *testing.T) {
 // redecl removed
 // env present
 // env absent
+// env empty
