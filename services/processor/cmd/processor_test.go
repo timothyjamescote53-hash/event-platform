@@ -200,3 +200,15 @@ var _ = math.Sqrt
 // isolation
 // zero stddev
 // varied history
+// count test
+// avg test
+// avg empty
+// p99 test
+// p99 empty
+// concurrent
+// no history
+// normal traffic
+// spike
+// drop
+// isolation
+// zero stddev

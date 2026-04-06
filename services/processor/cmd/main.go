@@ -376,3 +376,29 @@ func getEnv(key, fallback string) string {
 // log worker
 // getenv
 // signal handling
+// event domain
+// window struct
+// add method
+// avg method
+// p99 sort
+// p99 index
+// anomaly struct
+// zscore mean
+// zscore stddev
+// 3 sigma
+// history slide
+// zero stddev
+// window mgr
+// 1m window
+// 5m window
+// 1h window
+// process event
+// payload value
+// expiry
+// alert signal
+// emit alert
+// non-blocking
+// processor struct
+// process method
+// main workers
+// alert forwarder
