@@ -269,3 +269,4 @@ func main() {
 // writeJSON
 // query svc
 // event count
+// window metrics
