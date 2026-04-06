@@ -272,3 +272,4 @@ func main() {
 // window metrics
 // revenue
 // handler
+// count handler
