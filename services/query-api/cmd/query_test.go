@@ -103,3 +103,4 @@ func TestTimeRangeCalculation(t *testing.T) {
 // clamp valid
 // clamp zero
 // clamp negative
+// clamp max
