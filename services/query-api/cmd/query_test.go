@@ -92,3 +92,4 @@ func TestTimeRangeCalculation(t *testing.T) {
 // env absent
 // env empty
 // clamp valid
+// clamp zero
