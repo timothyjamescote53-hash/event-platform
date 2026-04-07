@@ -336,3 +336,4 @@ var _ = strings.TrimSpace
 // graceful
 // writeJSON
 // alert rule
+// fired alert
