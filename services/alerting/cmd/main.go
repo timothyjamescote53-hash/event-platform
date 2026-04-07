@@ -339,3 +339,4 @@ var _ = strings.TrimSpace
 // fired alert
 // engine struct
 // add rule
+// remove rule
