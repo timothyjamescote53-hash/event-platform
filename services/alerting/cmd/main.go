@@ -337,3 +337,4 @@ var _ = strings.TrimSpace
 // writeJSON
 // alert rule
 // fired alert
+// engine struct
