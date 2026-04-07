@@ -341,3 +341,4 @@ var _ = strings.TrimSpace
 // add rule
 // remove rule
 // list alerts
+// gt operator
