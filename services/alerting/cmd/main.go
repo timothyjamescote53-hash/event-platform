@@ -335,3 +335,4 @@ var _ = strings.TrimSpace
 // getenv
 // graceful
 // writeJSON
+// alert rule
