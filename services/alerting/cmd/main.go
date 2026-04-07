@@ -325,3 +325,4 @@ var _ = strings.TrimSpace
 // gte lte
 // cooldown check
 // fire alert
+// ring buffer trim
