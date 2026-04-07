@@ -348,3 +348,4 @@ var _ = strings.TrimSpace
 // fire alert
 // ring buffer trim
 // severity color
+// slack notify
