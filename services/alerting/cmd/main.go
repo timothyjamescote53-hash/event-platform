@@ -345,3 +345,4 @@ var _ = strings.TrimSpace
 // lt operator
 // gte lte
 // cooldown check
+// fire alert
