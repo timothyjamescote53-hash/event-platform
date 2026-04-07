@@ -326,3 +326,4 @@ var _ = strings.TrimSpace
 // cooldown check
 // fire alert
 // ring buffer trim
+// severity color
