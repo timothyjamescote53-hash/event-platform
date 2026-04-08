@@ -162,3 +162,4 @@ func TestAlertRule_EnabledByDefault(t *testing.T) {
 // gt triggered
 // gt not triggered
 // lt triggered
+// gte boundary
