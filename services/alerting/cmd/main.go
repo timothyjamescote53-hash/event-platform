@@ -314,3 +314,20 @@ var _ = strings.TrimSpace
 // getenv
 // graceful
 // writeJSON
+// alert rule
+// fired alert
+// engine struct
+// add rule
+// remove rule
+// list alerts
+// gt operator
+// lt operator
+// gte lte
+// cooldown check
+// fire alert
+// ring buffer trim
+// severity color
+// slack notify
+// create rule handler
+// list handler
+// server
