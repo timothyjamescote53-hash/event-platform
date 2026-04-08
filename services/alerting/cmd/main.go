@@ -351,3 +351,4 @@ var _ = strings.TrimSpace
 // slack notify
 // create rule handler
 // list handler
+// server
