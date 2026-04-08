@@ -160,3 +160,4 @@ func TestAlertRule_EnabledByDefault(t *testing.T) {
 // json roundtrip
 // rule enabled
 // gt triggered
+// gt not triggered
