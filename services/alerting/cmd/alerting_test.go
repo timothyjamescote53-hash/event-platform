@@ -165,3 +165,4 @@ func TestAlertRule_EnabledByDefault(t *testing.T) {
 // gte boundary
 // lte boundary
 // unknown op
+// severity critical
