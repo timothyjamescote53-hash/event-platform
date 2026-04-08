@@ -178,3 +178,4 @@ func TestAlertRule_EnabledByDefault(t *testing.T) {
 // unknown op
 // severity critical
 // severity warning
+// severity default
