@@ -180,3 +180,4 @@ func TestAlertRule_EnabledByDefault(t *testing.T) {
 // severity warning
 // severity default
 // json roundtrip
+// rule enabled
