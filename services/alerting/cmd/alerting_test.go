@@ -161,3 +161,4 @@ func TestAlertRule_EnabledByDefault(t *testing.T) {
 // rule enabled
 // gt triggered
 // gt not triggered
+// lt triggered
