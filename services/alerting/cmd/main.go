@@ -350,3 +350,4 @@ var _ = strings.TrimSpace
 // severity color
 // slack notify
 // create rule handler
+// list handler
