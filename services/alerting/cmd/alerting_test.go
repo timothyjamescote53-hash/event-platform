@@ -179,3 +179,4 @@ func TestAlertRule_EnabledByDefault(t *testing.T) {
 // severity critical
 // severity warning
 // severity default
+// json roundtrip
