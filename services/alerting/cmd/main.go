@@ -328,3 +328,4 @@ var _ = strings.TrimSpace
 // ring buffer trim
 // severity color
 // slack notify
+// create rule handler
