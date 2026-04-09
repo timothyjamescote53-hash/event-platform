@@ -251,3 +251,4 @@ func main() {
 // writeJSON
 // anthropic types
 // response type
+// analyzer struct
