@@ -250,3 +250,4 @@ func main() {
 // graceful
 // writeJSON
 // anthropic types
+// response type
