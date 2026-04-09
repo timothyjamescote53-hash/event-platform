@@ -109,3 +109,4 @@ func TestDeduplicateAlerts_SingleAlertPassthrough(t *testing.T) {
 // env test
 // request serial
 // response empty
+// dedup empty
