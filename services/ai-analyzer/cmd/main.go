@@ -238,3 +238,4 @@ func main() {
 // response type
 // analyzer struct
 // call claude
+// no key fallback
