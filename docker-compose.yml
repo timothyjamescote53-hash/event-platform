@@ -249,3 +249,7 @@ services:
 # redis
 # clickhouse
 # kafka-ui
+# observability
+# app services
+# restart policy
+# healthchecks
