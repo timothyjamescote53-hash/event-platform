@@ -250,3 +250,4 @@ services:
 # clickhouse
 # kafka-ui
 # observability
+# app services
