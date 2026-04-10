@@ -265,3 +265,4 @@ services:
 # redis
 # clickhouse
 # kafka-ui
+# observability
