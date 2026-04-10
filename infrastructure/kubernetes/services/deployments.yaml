@@ -252,3 +252,8 @@ stringData:
 # hpa
 # processor
 # secrets
+# query deploy
+# alerting deploy
+# ai deploy
+# configmap
+# secret
