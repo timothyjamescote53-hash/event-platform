@@ -217,3 +217,4 @@ export function handleSummary(data) {
 // think time
 // options
 // sustained
+// spike
