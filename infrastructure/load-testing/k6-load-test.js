@@ -211,3 +211,4 @@ export function handleSummary(data) {
 // sustained
 // spike
 // batch scenario
+// summary
