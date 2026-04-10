@@ -252,3 +252,4 @@ services:
 # observability
 # app services
 # restart policy
+# healthchecks
