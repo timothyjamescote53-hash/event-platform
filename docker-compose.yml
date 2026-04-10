@@ -251,3 +251,4 @@ services:
 # kafka-ui
 # observability
 # app services
+# restart policy
