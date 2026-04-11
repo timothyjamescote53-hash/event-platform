@@ -187,3 +187,4 @@ jobs:
 # go setup
 # mod tidy
 # go test
+# codecov
