@@ -200,3 +200,4 @@ jobs:
 # test job
 # go setup
 # mod tidy
+# go test
