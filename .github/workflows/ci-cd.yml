@@ -195,3 +195,17 @@ jobs:
 # build push
 # gitops
 # commit manifests
+# triggers
+# env
+# test job
+# go setup
+# mod tidy
+# go test
+# codecov
+# security
+# buildx
+# docker login
+# metadata
+# build push
+# gitops
+# commit manifests
