@@ -85,3 +85,4 @@ Kafka's exactly-once (transactional producers + EOS consumers) adds ~30% latency
 <!-- partitioning -->
 <!-- delivery -->
 <!-- context -->
+<!-- comparison -->
