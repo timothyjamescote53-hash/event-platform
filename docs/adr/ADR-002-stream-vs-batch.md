@@ -80,3 +80,6 @@ This is acceptable: late arrivals are typically <0.1% of traffic and are caused 
 <!-- tradeoffs -->
 <!-- windowing -->
 <!-- late arrival -->
+<!-- context -->
+<!-- tradeoffs -->
+<!-- windowing -->
