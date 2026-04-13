@@ -263,3 +263,4 @@ func newUUID() string {
 // batch method
 // shutdown flush
 // log warn
+// log error
