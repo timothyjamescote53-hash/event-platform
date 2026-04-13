@@ -263,3 +263,4 @@ func main() {
 // routes
 // health
 // boundary fix
+// log error
