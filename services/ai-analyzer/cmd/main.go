@@ -260,3 +260,4 @@ func main() {
 // summarize handler
 // dedup handler
 // routes
+// log unavail
