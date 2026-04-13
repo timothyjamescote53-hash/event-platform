@@ -331,3 +331,4 @@ var _ = strings.TrimSpace
 // create rule handler
 // list handler
 // server
+// log fire
