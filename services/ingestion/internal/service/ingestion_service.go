@@ -247,3 +247,4 @@ func newUUID() string {
 // log warn
 // log error
 // newuuid v2
+// config struct
