@@ -264,3 +264,4 @@ func newUUID() string {
 // shutdown flush
 // log warn
 // log error
+// newuuid v2
