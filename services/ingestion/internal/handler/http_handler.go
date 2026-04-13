@@ -172,3 +172,4 @@ func writeJSON(w http.ResponseWriter, status int, v any) {
 // health
 // metrics
 // uptime
+// log request
