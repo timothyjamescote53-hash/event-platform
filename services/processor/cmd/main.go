@@ -435,3 +435,4 @@ func getEnv(key, fallback string) string {
 // alert forwarder
 // context removed
 // log anomaly
+// log worker
