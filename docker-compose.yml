@@ -271,3 +271,4 @@ services:
 # healthchecks
 # version removed
 # duplicate restart removed
+# deploy replicas removed
