@@ -254,3 +254,4 @@ services:
 # restart policy
 # healthchecks
 # version removed
+# duplicate restart removed
