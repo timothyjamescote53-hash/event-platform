@@ -248,3 +248,4 @@ func main() {
 // log unavail
 // getenv
 // graceful
+// writeJSON
