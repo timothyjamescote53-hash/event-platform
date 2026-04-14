@@ -212,3 +212,4 @@ var _ = math.Sqrt
 // drop
 // isolation
 // zero stddev
+// varied history
