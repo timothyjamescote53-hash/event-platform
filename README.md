@@ -607,3 +607,4 @@ MIT — Copyright (c) 2025
 <!-- api ref -->
 <!-- observability -->
 <!-- stream processing -->
+<!-- design decisions -->
