@@ -284,3 +284,4 @@ func main() {
 // log error
 // getenv
 // graceful
+// writeJSON
