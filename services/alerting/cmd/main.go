@@ -334,3 +334,4 @@ var _ = strings.TrimSpace
 // log fire
 // getenv
 // graceful
+// writeJSON
