@@ -605,3 +605,4 @@ MIT — Copyright (c) 2025
 <!-- roadmap -->
 <!-- license -->
 <!-- api ref -->
+<!-- observability -->
