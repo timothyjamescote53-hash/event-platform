@@ -606,3 +606,4 @@ MIT — Copyright (c) 2025
 <!-- license -->
 <!-- api ref -->
 <!-- observability -->
+<!-- stream processing -->
