@@ -119,3 +119,4 @@ func getEnv(key, fallback string) string {
 // graceful
 // method handler
 // batch flush ctx
+// flush on shutdown
