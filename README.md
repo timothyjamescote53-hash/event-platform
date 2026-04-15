@@ -579,3 +579,4 @@ MIT — Copyright (c) 2025
 <!-- ai layer -->
 <!-- contributing -->
 <!-- roadmap -->
+<!-- license -->
