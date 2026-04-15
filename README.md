@@ -596,3 +596,11 @@ MIT — Copyright (c) 2025
 <!-- storage -->
 <!-- prereqs -->
 <!-- quickstart -->
+<!-- slo -->
+<!-- failure -->
+<!-- scaling -->
+<!-- load test -->
+<!-- ai layer -->
+<!-- contributing -->
+<!-- roadmap -->
+<!-- license -->
