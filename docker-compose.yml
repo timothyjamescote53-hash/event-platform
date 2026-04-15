@@ -258,3 +258,4 @@ services:
 # deploy replicas removed
 # clickhouse ulimits
 # grafana env
+# jaeger otlp
