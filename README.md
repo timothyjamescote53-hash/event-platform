@@ -564,3 +564,27 @@ MIT — Copyright (c) 2025
 <!-- final -->
 <!-- badges -->
 <!-- architecture diagram -->
+<!-- init -->
+<!-- overview -->
+<!-- arch -->
+<!-- flow -->
+<!-- services -->
+<!-- storage -->
+<!-- prereqs -->
+<!-- quickstart -->
+<!-- slo -->
+<!-- failure -->
+<!-- scaling -->
+<!-- load test -->
+<!-- ai layer -->
+<!-- contributing -->
+<!-- roadmap -->
+<!-- license -->
+<!-- api ref -->
+<!-- observability -->
+<!-- stream processing -->
+<!-- design decisions -->
+<!-- tested -->
+<!-- final -->
+<!-- badges -->
+<!-- architecture diagram -->

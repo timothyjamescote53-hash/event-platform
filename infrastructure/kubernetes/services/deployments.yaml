@@ -234,3 +234,16 @@ stringData:
 # liveness
 # resources
 # rolling
+# ns
+# ingestion deploy
+# hpa
+# processor
+# secrets
+# query deploy
+# alerting deploy
+# ai deploy
+# configmap
+# secret
+# liveness
+# resources
+# rolling

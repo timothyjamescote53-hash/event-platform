@@ -207,3 +207,11 @@ export function handleSummary(data) {
 // metrics
 // tenants
 // think time
+// options
+// sustained
+// spike
+// batch scenario
+// summary
+// metrics
+// tenants
+// think time

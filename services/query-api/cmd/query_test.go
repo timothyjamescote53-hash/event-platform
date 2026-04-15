@@ -88,3 +88,12 @@ func TestTimeRangeCalculation(t *testing.T) {
 // clamp max
 // time range
 // redecl removed
+// env present
+// env absent
+// env empty
+// clamp valid
+// clamp zero
+// clamp negative
+// clamp max
+// time range
+// redecl removed

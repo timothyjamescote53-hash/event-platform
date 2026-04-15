@@ -249,3 +249,21 @@ func main() {
 // getenv
 // graceful
 // writeJSON
+// query svc
+// event count
+// window metrics
+// revenue
+// handler
+// count handler
+// metrics handler
+// revenue handler
+// dashboard handler
+// clamp
+// parse helpers
+// routes
+// health
+// boundary fix
+// log error
+// getenv
+// graceful
+// writeJSON
