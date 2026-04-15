@@ -244,3 +244,4 @@ stringData:
 # ai deploy
 # configmap
 # secret
+# liveness
