@@ -170,3 +170,14 @@ func TestAlertRule_EnabledByDefault(t *testing.T) {
 // severity default
 // json roundtrip
 // rule enabled
+// gt triggered
+// gt not triggered
+// lt triggered
+// gte boundary
+// lte boundary
+// unknown op
+// severity critical
+// severity warning
+// severity default
+// json roundtrip
+// rule enabled

@@ -45,3 +45,6 @@ scrape_configs:
 # global
 # scrape
 # alertmanager removed
+# global
+# scrape
+# alertmanager removed

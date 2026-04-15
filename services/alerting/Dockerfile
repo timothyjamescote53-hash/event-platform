@@ -17,3 +17,4 @@ ENTRYPOINT ["/alerting-service"]
 # build
 # build
 # build
+# build

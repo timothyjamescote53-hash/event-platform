@@ -259,3 +259,19 @@ services:
 # clickhouse ulimits
 # grafana env
 # jaeger otlp
+# init
+# zookeeper
+# kafka
+# redis
+# clickhouse
+# kafka-ui
+# observability
+# app services
+# restart policy
+# healthchecks
+# version removed
+# duplicate restart removed
+# deploy replicas removed
+# clickhouse ulimits
+# grafana env
+# jaeger otlp

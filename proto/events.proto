@@ -134,3 +134,8 @@ message RecentEventsResponse {
 // alert
 // metric
 // query
+// init
+// batch
+// alert
+// metric
+// query
