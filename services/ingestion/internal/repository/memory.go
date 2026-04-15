@@ -89,3 +89,4 @@ func (m *MemoryDeduplicator) runExpiry() {
 // deduper
 // expiry goroutine
 // interface check
+// dedup interface
