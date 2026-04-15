@@ -585,3 +585,4 @@ MIT — Copyright (c) 2025
 <!-- stream processing -->
 <!-- design decisions -->
 <!-- tested -->
+<!-- final -->
