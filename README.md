@@ -586,3 +586,4 @@ MIT — Copyright (c) 2025
 <!-- design decisions -->
 <!-- tested -->
 <!-- final -->
+<!-- badges -->
