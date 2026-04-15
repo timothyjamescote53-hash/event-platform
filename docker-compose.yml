@@ -253,3 +253,7 @@ services:
 # app services
 # restart policy
 # healthchecks
+# version removed
+# duplicate restart removed
+# deploy replicas removed
+# clickhouse ulimits
