@@ -611,3 +611,4 @@ MIT — Copyright (c) 2025
 <!-- tested -->
 <!-- final -->
 <!-- badges -->
+<!-- architecture diagram -->
