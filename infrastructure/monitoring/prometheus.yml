@@ -1,0 +1,44 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    environment: production
+    platform: event-platform
+
+rule_files:
+  - "rules/*.yml"
+
+scrape_configs:
+  - job_name: "ingestion-service"
+    static_configs:
+      - targets: ["ingestion-service:8080"]
+    metrics_path: /metrics
+
+  - job_name: "processor-service"
+    static_configs:
+      - targets: ["processor-service:8081"]
+    metrics_path: /metrics
+
+  - job_name: "query-api"
+    static_configs:
+      - targets: ["query-api:8082"]
+    metrics_path: /metrics
+
+  - job_name: "alerting-service"
+    static_configs:
+      - targets: ["alerting-service:8083"]
+    metrics_path: /metrics
+
+  - job_name: "ai-analyzer"
+    static_configs:
+      - targets: ["ai-analyzer:8084"]
+    metrics_path: /metrics
+# scrape
+# scrape
+# scrape
+# global
+# scrape
+# alertmanager removed
+# global
+# scrape
+# alertmanager removed

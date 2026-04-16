@@ -1,0 +1,131 @@
+syntax = "proto3";
+
+package events.v1;
+
+option go_package = "github.com/yourorg/event-platform/proto;eventpb";
+
+// Core event envelope — all events flowing through the pipeline use this schema
+message Event {
+  string id         = 1;  // UUID v4, used for deduplication
+  string tenant_id  = 2;  // Multi-tenant isolation key
+  string user_id    = 3;
+  string event_type = 4;  // e.g. "purchase", "click", "error", "login"
+  string source     = 5;  // originating service/app
+  int64  timestamp  = 6;  // Unix millis
+  int32  version    = 7;  // Schema version for evolution
+  bytes  payload    = 8;  // JSON-encoded metadata
+  map<string, string> labels = 9; // Arbitrary key-value tags
+}
+
+// Batch of events for efficient ingestion
+message EventBatch {
+  repeated Event events = 1;
+  string batch_id       = 2;
+  int64  received_at    = 3;
+}
+
+// Aggregated metric window result
+message AggregatedMetric {
+  string tenant_id   = 1;
+  string event_type  = 2;
+  string window_type = 3;  // "tumbling_1m", "sliding_5m"
+  int64  window_start = 4;
+  int64  window_end   = 5;
+  int64  count        = 6;
+  double sum          = 7;
+  double avg          = 8;
+  double p99          = 9;
+}
+
+// Alert definition
+message AlertRule {
+  string id          = 1;
+  string tenant_id   = 2;
+  string name        = 3;
+  string event_type  = 4;
+  string metric      = 5;  // "count", "rate", "p99_latency"
+  string operator    = 6;  // "gt", "lt", "gte", "lte"
+  double threshold   = 7;
+  string window      = 8;  // "1m", "5m", "1h"
+  repeated string notify_channels = 9;
+}
+
+// Fired alert
+message Alert {
+  string id          = 1;
+  string rule_id     = 2;
+  string tenant_id   = 3;
+  string message     = 4;
+  double current_value = 5;
+  double threshold   = 6;
+  int64  fired_at    = 7;
+  string severity    = 8;  // "info", "warning", "critical"
+}
+
+// Ingestion service RPC
+service IngestionService {
+  rpc IngestEvent(Event) returns (IngestResponse);
+  rpc IngestBatch(EventBatch) returns (IngestResponse);
+}
+
+message IngestResponse {
+  bool   success   = 1;
+  string batch_id  = 2;
+  int32  accepted  = 3;
+  int32  rejected  = 4;
+  repeated string errors = 5;
+}
+
+// Query service RPC
+service QueryService {
+  rpc GetEventCount(QueryRequest) returns (QueryResponse);
+  rpc GetMetrics(MetricsRequest) returns (MetricsResponse);
+  rpc GetRecentEvents(RecentEventsRequest) returns (RecentEventsResponse);
+}
+
+message QueryRequest {
+  string tenant_id  = 1;
+  string event_type = 2;
+  int64  from       = 3;
+  int64  to         = 4;
+}
+
+message QueryResponse {
+  int64  count      = 1;
+  double rate_per_second = 2;
+}
+
+message MetricsRequest {
+  string tenant_id  = 1;
+  string event_type = 2;
+  string window     = 3;
+  string metric     = 4;
+}
+
+message MetricsResponse {
+  repeated AggregatedMetric metrics = 1;
+}
+
+message RecentEventsRequest {
+  string tenant_id  = 1;
+  string event_type = 2;
+  int32  limit      = 3;
+}
+
+message RecentEventsResponse {
+  repeated Event events = 1;
+}
+// v1
+// v1
+// v1
+// v1
+// init
+// batch
+// alert
+// metric
+// query
+// init
+// batch
+// alert
+// metric
+// query

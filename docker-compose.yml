@@ -1,0 +1,245 @@
+networks:
+  platform:
+    driver: bridge
+
+volumes:
+  zookeeper-data:
+  kafka-data:
+  clickhouse-data:
+  redis-data:
+
+services:
+  # ── Infrastructure ──────────────────────────────────────────────────────────
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.6.0
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    volumes:
+      - zookeeper-data:/var/lib/zookeeper
+    networks: [platform]
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "2181"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  kafka:
+    image: confluentinc/cp-kafka:7.6.0
+    depends_on:
+      zookeeper: { condition: service_healthy }
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_NUM_PARTITIONS: 8
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 1
+      KAFKA_LOG_RETENTION_HOURS: 168
+    volumes:
+      - kafka-data:/var/lib/kafka
+    ports:
+      - "29092:29092"
+    networks: [platform]
+    healthcheck:
+      test: ["CMD", "kafka-topics", "--bootstrap-server", "localhost:9092", "--list"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    depends_on: [kafka]
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+    ports:
+      - "8090:8080"
+    networks: [platform]
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --maxmemory 512mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis-data:/data
+    ports:
+      - "6379:6379"
+    networks: [platform]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:24.3
+    environment:
+      CLICKHOUSE_DB: events
+      CLICKHOUSE_USER: default
+      CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT: 1
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+    ulimits:
+      nofile:
+        soft: 262144
+        hard: 262144
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    networks: [platform]
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8123/ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  # ── Application Services ────────────────────────────────────────────────────
+  ingestion-service:
+    build:
+      context: ./services/ingestion
+      dockerfile: Dockerfile
+    environment:
+      HTTP_PORT: "8080"
+      KAFKA_BROKERS: kafka:9092
+      KAFKA_TOPIC: events
+      REDIS_URL: redis://redis:6379
+    ports:
+      - "8080:8080"
+    depends_on:
+      kafka:  { condition: service_healthy }
+      redis:  { condition: service_healthy }
+    networks: [platform]
+    restart: unless-stopped
+
+  processor-service:
+    build:
+      context: ./services/processor
+      dockerfile: Dockerfile
+    environment:
+      KAFKA_BROKERS: kafka:9092
+      KAFKA_TOPIC: events
+      KAFKA_GROUP_ID: stream-processor
+      REDIS_URL: redis:6379
+      CLICKHOUSE_URL: clickhouse:9000
+    depends_on:
+      kafka:      { condition: service_healthy }
+      redis:      { condition: service_healthy }
+      clickhouse: { condition: service_healthy }
+    networks: [platform]
+    restart: unless-stopped
+
+  query-api:
+    build:
+      context: ./services/query-api
+      dockerfile: Dockerfile
+    environment:
+      HTTP_PORT: "8082"
+      REDIS_URL: redis://redis:6379
+      CLICKHOUSE_URL: clickhouse:9000
+    ports:
+      - "8082:8082"
+    depends_on:
+      redis:      { condition: service_healthy }
+      clickhouse: { condition: service_healthy }
+    networks: [platform]
+    restart: unless-stopped
+
+  alerting-service:
+    build:
+      context: ./services/alerting
+      dockerfile: Dockerfile
+    environment:
+      HTTP_PORT: "8083"
+      REDIS_URL: redis:6379
+      SLACK_WEBHOOK_URL: ${SLACK_WEBHOOK_URL:-}
+    ports:
+      - "8083:8083"
+    depends_on:
+      redis: { condition: service_healthy }
+    networks: [platform]
+    restart: unless-stopped
+
+  ai-analyzer:
+    build:
+      context: ./services/ai-analyzer
+      dockerfile: Dockerfile
+    environment:
+      HTTP_PORT: "8084"
+      REDIS_URL: redis:6379
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    ports:
+      - "8084:8084"
+    depends_on:
+      redis: { condition: service_healthy }
+    networks: [platform]
+    restart: unless-stopped
+
+  # ── Observability ───────────────────────────────────────────────────────────
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    volumes:
+      - ./infrastructure/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9191:9090"
+    networks: [platform]
+
+  grafana:
+    image: grafana/grafana:10.4.0
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin
+    ports:
+      - "3000:3000"
+    depends_on: [prometheus]
+    networks: [platform]
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.56
+    environment:
+      COLLECTOR_OTLP_ENABLED: "true"
+    ports:
+      - "16686:16686"
+      - "4317:4317"
+    networks: [platform]
+# base
+# kafka
+# clickhouse
+# base
+# kafka
+# base
+# kafka
+# clickhouse
+# init
+# zookeeper
+# kafka
+# redis
+# clickhouse
+# kafka-ui
+# observability
+# app services
+# restart policy
+# healthchecks
+# version removed
+# duplicate restart removed
+# deploy replicas removed
+# clickhouse ulimits
+# grafana env
+# jaeger otlp
+# init
+# zookeeper
+# kafka
+# redis
+# clickhouse
+# kafka-ui
+# observability
+# app services
+# restart policy
+# healthchecks
+# version removed
+# duplicate restart removed
+# deploy replicas removed
+# clickhouse ulimits
+# grafana env
+# jaeger otlp

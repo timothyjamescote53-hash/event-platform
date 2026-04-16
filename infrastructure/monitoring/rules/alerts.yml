@@ -1,0 +1,139 @@
+groups:
+  - name: ingestion.slo
+    rules:
+      # SLO: p99 ingestion latency < 50ms
+      - alert: IngestionHighLatency
+        expr: |
+          histogram_quantile(0.99,
+            rate(ingestion_http_duration_seconds_bucket[5m])
+          ) > 0.05
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Ingestion p99 latency > 50ms"
+          description: "Current p99: {{ $value | humanizeDuration }}"
+
+      # SLO: Error rate < 0.1%
+      - alert: IngestionHighErrorRate
+        expr: |
+          rate(ingestion_http_requests_total{status=~"5.."}[5m])
+          /
+          rate(ingestion_http_requests_total[5m]) > 0.001
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Ingestion error rate SLO breach"
+
+      # Throughput drop (possible upstream issue)
+      - alert: IngestionThroughputDrop
+        expr: |
+          rate(ingestion_events_published_total[5m]) < 10
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Event ingestion throughput dropped below 10 events/s"
+
+  - name: kafka.health
+    rules:
+      # Consumer lag is the most critical stream health metric
+      - alert: KafkaConsumerLagHigh
+        expr: kafka_consumer_lag_sum > 50000
+        for: 3m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Kafka consumer lag > 50,000 messages"
+          description: "Lag: {{ $value }}. Processors may be overwhelmed or crashed."
+          runbook: "docs/runbooks/debug-consumer-lag.md"
+
+      - alert: KafkaConsumerLagWarning
+        expr: kafka_consumer_lag_sum > 10000
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Kafka consumer lag > 10,000 messages"
+
+      - alert: KafkaBrokerDown
+        expr: up{job="kafka"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Kafka broker is unreachable"
+
+  - name: processing.health
+    rules:
+      - alert: ProcessingErrorRateHigh
+        expr: rate(processor_events_errors_total[5m]) > 100
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Processor error rate > 100 errors/5min"
+
+      - alert: AnomalyDetectionSpike
+        expr: rate(processor_anomalies_detected_total[5m]) > 10
+        for: 1m
+        labels:
+          severity: info
+        annotations:
+          summary: "Unusual number of anomalies detected ({{ $value }}/5min)"
+
+  - name: infrastructure.health
+    rules:
+      - alert: RedisDown
+        expr: up{job="redis"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Redis is down — deduplication and caching unavailable"
+
+      - alert: ClickHouseDown
+        expr: up{job="clickhouse"} == 0
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "ClickHouse is down — historical queries unavailable"
+
+      - alert: HighMemoryPressure
+        expr: |
+          container_memory_usage_bytes{namespace="event-platform"}
+          / container_spec_memory_limit_bytes{namespace="event-platform"} > 0.9
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Container {{ $labels.container }} memory > 90%"
+
+  - name: dlq.health
+    rules:
+      - alert: DLQGrowing
+        expr: kafka_topic_partition_current_offset{topic="events.dlq"} > 1000
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Dead letter queue has > 1000 unprocessed messages"
+          description: "Events are failing to process. Check processor logs."
+# slo
+# kafka
+# slo
+# kafka
+# slo
+# kafka
+# ingestion
+# kafka
+# infra
+# dlq
+# memory
+# ingestion
+# kafka
+# infra
+# dlq
+# memory

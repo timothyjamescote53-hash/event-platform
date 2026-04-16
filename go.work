@@ -1,0 +1,9 @@
+go 1.22
+
+use (
+	./services/ingestion
+	./services/processor
+	./services/query-api
+	./services/alerting
+	./services/ai-analyzer
+)

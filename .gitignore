@@ -1,0 +1,56 @@
+# Binaries
+**/bin/
+*.exe
+*.out
+
+# Go
+go.sum
+vendor/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Test / load test results
+results/
+coverage.out
+coverage.html
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# Protobuf generated (commit in real projects)
+# *.pb.go
+# binaries
+# results
+# final
+# binaries
+# results
+# final
+# binaries
+# results
+# binaries
+# results
+# final
+# go
+# results
+# volumes
+# terraform
+# ide
+# go
+# results
+# volumes
+# terraform
+# ide

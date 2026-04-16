@@ -1,0 +1,236 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: event-platform
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ingestion-service
+  namespace: event-platform
+  labels:
+    app: ingestion-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ingestion-service
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: ingestion-service
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics"
+    spec:
+      terminationGracePeriodSeconds: 60  # Allow batch flush
+      containers:
+        - name: ingestion-service
+          image: yourorg/ingestion-service:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: KAFKA_BROKERS
+              valueFrom:
+                configMapKeyRef:
+                  name: platform-config
+                  key: KAFKA_BROKERS
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: platform-secrets
+                  key: redis-url
+          livenessProbe:
+            httpGet:
+              path: /healthz/live
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /healthz/ready
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+            limits:
+              cpu: "1000m"
+              memory: "512Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingestion-service
+  namespace: event-platform
+spec:
+  selector:
+    app: ingestion-service
+  ports:
+    - port: 8080
+      targetPort: 8080
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: ingestion-service-hpa
+  namespace: event-platform
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ingestion-service
+  minReplicas: 3
+  maxReplicas: 20
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 60
+    # Custom metric: scale on events/sec
+    - type: Pods
+      pods:
+        metric:
+          name: ingestion_events_published_total
+        target:
+          type: AverageValue
+          averageValue: "5000"
+---
+# Processor with more aggressive scaling for lag recovery
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: processor-service
+  namespace: event-platform
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: processor-service
+  template:
+    metadata:
+      labels:
+        app: processor-service
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8081"
+    spec:
+      containers:
+        - name: processor-service
+          image: yourorg/processor-service:latest
+          env:
+            - name: KAFKA_BROKERS
+              valueFrom:
+                configMapKeyRef:
+                  name: platform-config
+                  key: KAFKA_BROKERS
+            - name: KAFKA_GROUP_ID
+              value: "stream-processor"
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: platform-secrets
+                  key: redis-url
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "2000m"
+              memory: "1Gi"
+          livenessProbe:
+            httpGet:
+              path: /healthz/live
+              port: 8081
+            initialDelaySeconds: 15
+            periodSeconds: 10
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: processor-hpa
+  namespace: event-platform
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: processor-service
+  minReplicas: 2
+  maxReplicas: 16
+  metrics:
+    - type: External
+      external:
+        metric:
+          name: kafka_consumer_lag
+          selector:
+            matchLabels:
+              topic: events
+        target:
+          type: AverageValue
+          averageValue: "1000"  # Scale when lag > 1000 msgs/pod
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: platform-config
+  namespace: event-platform
+data:
+  KAFKA_BROKERS: "kafka-headless:9092"
+  CLICKHOUSE_URL: "clickhouse:9000"
+  KAFKA_TOPIC: "events"
+  OTEL_EXPORTER_OTLP_ENDPOINT: "jaeger:4317"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: platform-secrets
+  namespace: event-platform
+type: Opaque
+stringData:
+  redis-url: "redis://redis:6379"
+  anthropic-api-key: "your-api-key-here"
+# ingestion
+# processor
+# secrets
+# ingestion
+# processor
+# secrets
+# ingestion
+# processor
+# secrets
+# ns
+# ingestion deploy
+# hpa
+# processor
+# secrets
+# query deploy
+# alerting deploy
+# ai deploy
+# configmap
+# secret
+# liveness
+# resources
+# rolling
+# ns
+# ingestion deploy
+# hpa
+# processor
+# secrets
+# query deploy
+# alerting deploy
+# ai deploy
+# configmap
+# secret
+# liveness
+# resources
+# rolling
